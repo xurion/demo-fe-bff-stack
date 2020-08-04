@@ -1,0 +1,10 @@
+{
+  "name": "fe-bff-stack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Dean James <xurion@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "install": "cd client && yarn install && cd ../api && yarn install && cd .."
+  }
+}
