@@ -1,6 +1,6 @@
 # Boilerplate React FE and Express BFF
 
-Client bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Client bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using TypeScript.
 
 Server bootstrapped with [Generate Express](https://expressjs.com/en/starter/generator.html).
 
