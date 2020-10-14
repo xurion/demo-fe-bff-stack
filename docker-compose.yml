@@ -2,45 +2,23 @@ version: "3.8"
 
 services:
   client:
-    build: ./client
-    image: webapp-client
-    restart: always
+    image: node
+    stdin_open: true
+    working_dir: /home/node/app
     ports:
       - 3000:3000
     volumes:
-      - ./client:/client
+      - ./client:/home/node/app
       - /client/node_modules
-    links:
-      - api
-    networks:
-      - webappnetwork
+    command: "yarn start"
 
   api:
-    build: ./api
-    image: webapp-api
-    restart: always
+    image: node
+    stdin_open: true
+    working_dir: /home/node/app
     ports:
       - 9000:9000
     volumes:
-      - ./api:/api
+      - ./api:/home/node/app
       - /api/node_modules
-    depends_on:
-      - mongodb
-    networks:
-      - webappnetwork
-
-  mongodb:
-    image: mongo
-    restart: always
-    container_name: mongodb
-    volumes:
-      - ./data-node:/data/db
-    ports:
-      - 27017:27017
-    command: mongod --noauth --smallfiles
-    networks:
-      - webappnetwork
-
-networks:
-  webappnetwork:
-    driver: bridge
+    command: "yarn start"
