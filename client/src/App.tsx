@@ -1,48 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-interface AppProps {}
-interface AppState {
-  apiResponse: string;
-}
+export default () => {
+  let [apiResponse, setApiResponse] = useState("Attempting to contact API...");
 
-class App extends React.Component<AppProps, AppState> {
-  constructor(props: AppProps) {
-    super(props);
-    this.state = {
-      apiResponse: "",
-    };
-  }
-
-  callAPI() {
-    fetch("http://localhost:9000/testAPI")
+  useEffect(() => {
+    fetch("http://localhost:9000/_health")
       .then((res) => res.text())
-      .then((res) => this.setState({ apiResponse: res }));
-  }
+      .then((res) => setApiResponse(res));
+  }, []);
 
-  componentWillMount() {
-    this.callAPI();
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>{this.state.apiResponse}</p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
-
-export default App;
+  return (
+    <div className="App">
+      <img src={logo} className="App-logo" alt="logo" />
+      <p>{apiResponse}</p>
+    </div>
+  );
+};

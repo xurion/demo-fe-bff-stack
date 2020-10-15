@@ -10,6 +10,14 @@ After cloning the project, run `yarn install` from the project root. This instal
 
 ## Starting The App
 
-Run `yarn start` in the `api/` directory, followed by `yarn start` in the `client/` directory (in different terminals).
+The recommended way to run the app is to use Docker Compose:
 
-Navigate to localhost:3000 to see the FE app. The BFF sits on localhost:9000.
+```
+docker-compose up
+```
+
+This runs the client and api in their respective containers. Navigate to http://localhost:3000 to see the client app. The api sits on http://localhost:9000.
+
+Alternatively you can run `yarn start` in the `api/` directory, followed by `yarn start` in the `client/` directory in different terminal instances.
+
+The client should display "API working fine!" if everything has worked. If not, check the network panel of your development tools.
